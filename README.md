@@ -9,10 +9,10 @@
 
 👤 **Julien Mousqueton**
 
-* Website: http://www.julienmousqueton.fr
+* Website: https://www.julienmousqueton.fr
 * Twitter: [@JMousqueton](https://twitter.com/JMousqueton)
 * Github: [@JMousqueton](https://github.com/JMousqueton)
-* LinkedIn: [@https:\/\/www.linkedin.com\/in\/julienmousqueton\/](https://linkedin.com/in/https:\/\/www.linkedin.com\/in\/julienmousqueton\/)
+* LinkedIn: [Julien Mousqueton](https://linkedin.com/in/julienmousqueton)
 
 ## 🤝 Contributing
 
