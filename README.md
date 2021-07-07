@@ -5,6 +5,11 @@
 
 > Ransomware Demonstration for Computacenter CEC 
 
+## Description 
+
+This Powershell ransomware crypt files using an X.509 public key certificate
+By Default the ransomware will crypt files in the c:\Data folder and save the X.509 public key certificat which is autogenerate in C:\YYYY-MM-DD-HHMM folder 
+
 ## Author
 
 👤 **Julien Mousqueton**
