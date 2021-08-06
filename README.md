@@ -8,7 +8,7 @@
 
 ## Description
 
-This Powershell ransomware crypt files using an X.509 public key certificate
+This Powershell ransomware crypts files using an X.509 public key certificate
 By Default the ransomware will crypt files in the C:\Data folder and save the X.509 public key certificate which is auto-generated in C:\YYYY-MM-DD-HHMM folder
 
 ## Author
