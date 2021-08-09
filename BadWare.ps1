@@ -26,7 +26,7 @@ ___.                ____.     .__  .__                   _____                  
 .NOTES
     Version:        2.3
 	Author:         Julien Mousqueton @JMousqueton 
-	Creation Date:  2021-07-07
+	Creation Date:  2021-08-09
 	Purpose/Change: Simplify the crypto 
 .COMPONENT
     None
@@ -37,16 +37,16 @@ ___.                ____.     .__  .__                   _____                  
 # Directory Target to crypt 
 $TargetEncr = "C:\Data"
 
-#Set Error & Warning Action 
-$ErrorActionPreference = "Stop"
-$WarningPreference = "SilentlyContinue"
-
 # Define the DN of the certificate 
 $CertName = "DEMO CEC COMPUTACENTER"
 
 # UI  
 $btc_addr = '538f15c2-07ed-4cbe-8f37-efd0ecce1165' # Who knows perhaps I'll get rich 💰 
 $delay = 60  # Delay to show the UI 
+
+#Set Error & Warning Action 
+$ErrorActionPreference = "Stop"
+$WarningPreference = "SilentlyContinue"
 
 #####################################
 ## NO NEED TO EDIT AFTER THIS LINE ##
