@@ -1,6 +1,6 @@
 # Welcome to BADWARE 👋
 
-![Version](https://img.shields.io/badge/version-2.2-blue.svg?cacheSeconds=2592000)
+![Version](https://img.shields.io/badge/version-2.3-blue.svg?cacheSeconds=2592000)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-yellow.svg)](https://github.com/JMousqueton/Badware/blob/main/LICENSE)
 [![Twitter: JMousqueton](https://img.shields.io/twitter/follow/JMousqueton.svg?style=social)](https://twitter.com/JMousqueton)
 
@@ -41,7 +41,7 @@ __________    _____  ________     __      __  _____ _____________________
 
 Simply modifiy variables at the begining of the script 
 
-````
+```
 # Directory Target to crypt 
 $TargetEncr = "C:\Data" 
 
@@ -52,7 +52,6 @@ $CertName = "DEMO CEC COMPUTACENTER"
 $btc_addr = '538f15c2-07ed-4cbe-8f37-efd0ecce1165' # Who knows perhaps I'll get rich 💰 
 $delay = 60  # Delay to show the UI 
 ``` 
-
 
 ## Author
 
