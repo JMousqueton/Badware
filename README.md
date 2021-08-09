@@ -37,9 +37,11 @@ __________    _____  ________     __      __  _____ _____________________
 [+] Exiting and waiting for the money
 ``` 
 
-## How to use
+- [Changelog](https://github.com/JMousqueton/Badware/blob/main/CHANGELOG.md)
 
-Simply modifiy variables at the begining of the script 
+## Usage 
+
+- Simply modifiy variables at the begining of the script 
 
 ```
 # Directory Target to crypt 
@@ -52,6 +54,8 @@ $CertName = "DEMO CEC COMPUTACENTER"
 $btc_addr = '538f15c2-07ed-4cbe-8f37-efd0ecce1165' # Who knows perhaps I'll get rich 💰 
 $delay = 60  # Delay to show the UI 
 ``` 
+
+- Execute the script badware.ps1 
 
 ## Author
 
