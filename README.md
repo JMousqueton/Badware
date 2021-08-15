@@ -59,6 +59,12 @@ $delay = 60  # Delay to show the UI
 
 - Execute the script badware.ps1 
 
+## Legal Disclaimer
+
+This project must not be used for illegal purposes or for hacking into system where you do not have permission, it is strictly for educational purposes.
+Performing any hack attempts or tests without written permission from the owner of the computer system is illegal.
+Badware project must not be used for illegal purposes. It is strictly for educational purposes. 
+
 ## Author
 
 👤 **Julien Mousqueton**
