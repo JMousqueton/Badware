@@ -14,6 +14,8 @@ This Powershell ransomware encrypts files using an X.509 public key certificate 
 
 By Default the ransomware will cenrypt files in the C:\Data folder and save the X.509 public key certificate which is auto-generated in C:\YYYY-MM-DD-HHMM folder
 
+This "ransomware" was inspired by [Phirautee](https://github.com/Viralmaniar/Phirautee)
+
 ```
 __________    _____  ________     __      __  _____ _____________________
 \______   \  /  _  \ \______ \   /  \    /  \/  _  \\______   \_   _____/
