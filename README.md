@@ -40,6 +40,7 @@ __________    _____  ________     __      __  _____ _____________________
 ``` 
 
 - [Changelog](https://github.com/JMousqueton/Badware/blob/main/CHANGELOG.md)
+- [Todo](https://github.com/JMousqueton/Badware/blob/main/TODO.md)
 
 ## Usage 
 
