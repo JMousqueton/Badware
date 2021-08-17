@@ -4,11 +4,11 @@
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-yellow.svg)](https://github.com/JMousqueton/Badware/blob/main/LICENSE)
 [![Twitter: JMousqueton](https://img.shields.io/twitter/follow/JMousqueton.svg?style=social)](https://twitter.com/JMousqueton)
 
-> Ransomware Demonstration for Computacenter CEC
+> Ransomware Demonstration for Customer Experience Center
 
 ## Description
 
-Quick & Dirty ransomware written in Powershell for the purpose of demonstrations at Computacenter Customer Experience Center.
+Quick & Dirty ransomware written in Powershell for the purpose of demonstrations at Customer Experience Center.
 
 This Powershell ransomware encrypts files using an X.509 public key certificate generated on the host :) 
 
@@ -51,7 +51,7 @@ __________    _____  ________     __      __  _____ _____________________
 $TargetEncr = "C:\Data" 
 
 # Define the DN of the certificate 
-$CertName = "DEMO CEC COMPUTACENTER"
+$CertName = "DEMO CEC"
 
 # UI  
 $btc_addr = '538f15c2-07ed-4cbe-8f37-efd0ecce1165' # Who knows perhaps I'll get rich 💰 
