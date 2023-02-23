@@ -48,14 +48,22 @@ __________    _____  ________     __      __  _____ _____________________
 
 ```
 # Directory Target to crypt 
-$TargetEncr = "C:\Data" 
+$TargetEncr = "C:\Data"
 
-# Define the DN of the certificate 
-$CertName = "DEMO CEC"
+# At the end load CPU to triggered some behavior alarm 
+$CPULoad = $false
+
+# Delete the script ransomware.ps1 
+$SelfDestroy = $false
+
+# Delete private key after 
+$DeleteKey = $true 
 
 # UI  
-$btc_addr = '538f15c2-07ed-4cbe-8f37-efd0ecce1165' # Who knows perhaps I'll get rich 💰 
 $delay = 60  # Delay to show the UI 
+
+# Define the DN of the certificate 
+$CertName = "DEMO RANSOMWARE"
 ``` 
 
 - Execute the script badware.ps1 
@@ -87,6 +95,6 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-Copyright © 2021 [Julien Mousqueton](https://github.com/JMousqueton).
+Copyright © 2021-2023 [Julien Mousqueton](https://github.com/JMousqueton).
 
 This project is [Apache 2.0](https://github.com/JMousqueton/Badware/blob/main/LICENSE) licensed.

