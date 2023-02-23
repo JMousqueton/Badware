@@ -1,6 +1,6 @@
 # Welcome to BADWARE 👋
 
-![Version](https://img.shields.io/badge/version-2.3-blue.svg?cacheSeconds=2592000)
+![Version](https://img.shields.io/badge/version-3.0-blue.svg?cacheSeconds=2592000)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-yellow.svg)](https://github.com/JMousqueton/Badware/blob/main/LICENSE)
 [![Twitter: JMousqueton](https://img.shields.io/twitter/follow/JMousqueton.svg?style=social)](https://twitter.com/JMousqueton)
 

